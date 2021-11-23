@@ -27,12 +27,12 @@ Work experience
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* ROS
+* Azure
+* CUDA Programming
+* VLSI Design
+* ARM Programming and Optimization
+* Pytorch
 
 Publications
 ======
