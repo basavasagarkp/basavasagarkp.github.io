@@ -11,21 +11,19 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* B.E in Electronics & Communication Engineering, RV Collge of Engineering, 2022
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Summer 2021: Research Assistant
+  * IIT Bombay
+  * Convergence Analysis of Distributed Stochastic Gradient Descent Algorithms
+  * Supervisor: Professor V. S. Borkar
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Fall 2021: Embedded Software Engineer
+  * Boeing India Engineering
+  * Yocto Project
+  * Supervisor: Shriram 
   
 Skills
 ======
@@ -56,4 +54,4 @@ Teaching
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Currently Electronics Subsystem Lead at Team Vyoma and Academic Support Volunteer at MAD, Bangalore
