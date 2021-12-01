@@ -8,8 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-This is Basavasagar's Personal Page just testing for now will update soon.
-A data-driven personal website
+Hey, I am Basavasagar.
 
 **Put in my interest and the recent work that I have been working on**
 Born in Kalaburagi. India moved to Bangalore for my Undergraduate degree in Electronics and Communication Engineering at RV College of Engineering. My interests lies in Robotics, Reinforcement learning for real world robotics and space technologies from manufacturing to communications.
