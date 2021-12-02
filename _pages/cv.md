@@ -9,6 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
+**Downloadable Version: ** [CV](https://drive.google.com/file/d/15WvQpOJXyq9FcC1wHoBuvQPfTtWBvIU7/view?usp=sharing)
+
 Education
 ======
 * B.E in Electronics & Communication Engineering, RV Collge of Engineering, 2022
