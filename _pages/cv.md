@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-**Downloadable Version: ** [CV](https://drive.google.com/file/d/15WvQpOJXyq9FcC1wHoBuvQPfTtWBvIU7/view?usp=sharing)
+Downloadable Version: [CV](https://drive.google.com/file/d/15WvQpOJXyq9FcC1wHoBuvQPfTtWBvIU7/view?usp=sharing)
 
 Education
 ======
