@@ -46,12 +46,7 @@ Talks
     {% include archive-single-talk-cv.html %}
   {% endfor %}</ul>
   
-Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
 Service and leadership
 ======
-* Currently Electronics Subsystem Lead at Team Vyoma and Academic Support Volunteer at MAD, Bangalore
+* Currently Electronics Subsystem Lead at Team Vyoma
+* Academic Support Volunteer at MAD, Bangalore
