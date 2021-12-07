@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: basavasagarkp.github.io
-Token: 5abba5fb5b8e41afc2ebee6fe582b7bb27a74fbfb92a0be4fab0fd3e5f66e9f9
