@@ -1,7 +1,7 @@
 ---
 title: 'Stochastic Gradient Descent, Why so popular?'
 date: 2021-11-23
-permalink: /posts/2012/08/blog-post-1/
+permalink: /posts/dsgd
 tags:
   - optimization
   - stochastic gradient descent
