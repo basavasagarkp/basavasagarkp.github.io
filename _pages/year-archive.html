@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: archive
 permalink: /year-archive/
 title: "Blog posts"
@@ -18,4 +18,20 @@ redirect_from:
   {% include archive-single.html %}
 {% endfor %}
 <a href="basavasagarkp.github.io/_pages/2022-12-10-blog-post-2.html" title="Stochastic Gradient Descent">HTML File</a>
+-->
+---
+layout: archive
+title: "Blog Posts"
+permalink: /talks/
+author_profile: true
+---
 
+{% if site.talkmap_link == true %}
+
+<p style="text-decoration:underline;"><a href="/2022-12-10-blog-post-2.html">See a map of all the places I've given a talk!</a></p>
+
+{% endif %}
+
+{% for post in site.talks reversed %}
+  {% include archive-single-talk.html %}
+{% endfor %}
