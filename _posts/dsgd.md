@@ -1,3 +1,13 @@
+---
+title: 'Stochastic Gradient Descent, Why so popular?'
+date: 2021-11-23
+permalink: /posts/2012/08/blog-post-1/
+tags:
+  - optimization
+  - stochastic gradient descent
+  - machine learning
+---
+
 # Stochastic Gradient Descent, Why so popular?
 
 Stochastic Gradient Descent is probably one of the most widely used algorithms maybe beside FFT(my favorite though, truly ingenious).  Its widely used in optimization theory (of-course!), control systems, deep learning and any domain in which it is required to optimize parameters of the function to take a minimum value. One of the main reasons for its popularity is it's very easy to understand and one can get a quite good intuition by just seeing the equation. However, behind its simple formulation hides a monster which has to be tackled in-order to successfully apply the algorithm to ensure convergence (by convergence I mean to reach to a close optimal value within a specified error range). 
