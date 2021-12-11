@@ -10,7 +10,8 @@ redirect_from:
 
 Hey, I am Basavasagar.
 
-Born in Kalaburagi. India moved to Bangalore for my Undergraduate degree in Electronics and Communication Engineering at RV College of Engineering. My interests lies in Robotics, Reinforcement learning for real world robotics and space technologies from manufacturing to communications.
+Currently in 4th Year of my Undergraduate degree in Electronics and Communication Engineering at RV College of Engineering. My interests lies in Robotics, Reinforcement learning for real world robotics and space technologies from manufacturing to communications.
 
 **News**
-- Attending Neurips2021
+- Attending Neurips 2021
+- Attending ICML 2021
