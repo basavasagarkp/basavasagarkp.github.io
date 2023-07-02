@@ -1,11 +1,11 @@
 # Site settings
-title: Andrej Karpathy blog
+title: Basavasagar's blog
 email: 
-description: "Musings of a Computer Scientist."
+description: "Tourist"
 baseurl: ""
-url: "http://karpathy.github.io"
-twitter_username: karpathy
-github_username:  karpathy
+url: "http://basavasagarkp.github.io"
+twitter_username: basavasagar18
+github_username:  bkpcoding
 
 # Build settings
 markdown: kramdown
