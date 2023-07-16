@@ -4,7 +4,7 @@
 
 
 
-<img src="/home/sagar/Downloads/cathedral saint jean.jpg" alt="cathedral saint jean" style="zoom: 15%;" />
+<img src="/assets/cathedral%20saint%20jean.jpg" alt="cathedral saint jean" style="zoom: 15%;" />
 
 ​																			<font size="2"> Cathédrale Saint-Jean-Baptiste, Lyon, during Fête des Lumières in 2022.</font>
 
