@@ -4,9 +4,9 @@
 
 
 
-<img src="/home/sagar/Downloads/cathedral saint jean.jpg" alt="cathedral saint jean" style="zoom: 15%;" />
+<img src="../images/cathedral saint jean.jpg" alt="cathedral saint jean" style="zoom: 15%;" />
 
-​																			<font size="2"> Cathédrale Saint-Jean-Baptiste, Lyon, during Fête des Lumières in 2022.</font>
+​<font size="2"> Cathédrale Saint-Jean-Baptiste, Lyon, during Fête des Lumières in 2022.</font>
 
 So it has been some time that I have been living in France, and soon I will be leaving from here. I thought it would be nice to document my thoughts about my experience. 
 
