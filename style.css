@@ -146,6 +146,12 @@ h2 {
   float: left;
   padding: 0;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
 .button:hover {
   color: #150c21;
