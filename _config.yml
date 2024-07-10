@@ -1,0 +1,17 @@
+title: Sagar's blog
+email: 
+description: "Just blogging."
+baseurl: "/blogs"
+url: "http://basavasagarkp.github.io"
+twitter_username: basavasagar18
+github_username:  bkpcoding
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
