@@ -43,13 +43,43 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+/* Styles for LaTeX equations in Markdown */
+.math-display,
+.katex-display,
+p > span.math.math-display,
+div.math.math-display {
+  display: block;
+  text-align: center;
+  margin: 2em 0;
+  overflow-x: auto;
+  font-size: 1.1em;  /* Slightly larger font size for equations */
+}
+
+/* Add space before and after equations */
+p + .math-display,
+p + .katex-display,
+p + p > span.math.math-display,
+p + div.math.math-display,
+.math-display + p,
+.katex-display + p,
+p > span.math.math-display + p,
+div.math.math-display + p {
+  margin-top: 2em;
+}
+
+/* Ensure inline math doesn't break the line height */
+.math-inline,
+.katex-inline,
+span.math.math-inline {
+  vertical-align: middle;
+}
 
 /**************************************************/
 
 #body{
   font-family: 'Asap', roboto, sans-serif;
   font-size: 1em;
-  line-height: 1.5em;
+  line-height: 1.8em;
   color: #150c21;
 }
 
@@ -110,6 +140,10 @@ h1 {
   width: 12em;
 }
 
+p {
+  margin-bottom: 1.5em; /* This adds space after each paragraph */
+}
+
 /**************************************************/
 /* Section buttons. */
 
@@ -126,7 +160,7 @@ h2 {
   font-size: 1.6em;
   line-height: 2.4em;
   margin-top: 0.5em;
-  color: #a0a8b0;
+  color: #0f1010;
 }
 
 .selected h2 {
@@ -230,6 +264,74 @@ h2 {
   width: 100%;
 }
 
+
+/* General styling for code blocks */
+pre code {
+  display: block;
+  padding: 1em;
+  background: #f5f4f4;
+  color: #111110;
+  border-radius: 5px;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+/* Specific token styles */
+pre code .comment { color: #75715e; font-style: italic; }
+pre code .keyword { color: #66d9ef; }
+pre code .builtin { color: #a6e22e; }
+pre code .string { color: #e6db74; }
+pre code .number { color: #ae81ff; }
+pre code .operator { color: #f92672; }
+pre code .function { color: #a6e22e; }
+pre code .class-name { color: #f8f8f2; font-weight: bold; }
+pre code .constant { color: #ae81ff; }
+pre code .variable { color: #f8f8f2; }
+
+/* Line numbers */
+pre code .line-numbers {
+    position: relative;
+    padding-left: 2.8em;
+    counter-reset: line;
+}
+
+pre code .line-numbers-rows {
+    position: absolute;
+    left: 0;
+    width: 2.5em;
+    text-align: right;
+    color: #3b3a32;
+    user-select: none;
+}
+
+pre code .line-numbers-rows span {
+    display: block;
+    counter-increment: line;
+}
+
+pre code .line-numbers-rows span:before {
+    content: counter(line);
+}
+
+/* Copy button styling */
+.copy-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.copy-button:hover {
+  background-color: #e6e6e6;
+}
+
 /**************************************************/
 /* Buttons for showing more or less highlights. */
 
@@ -323,7 +425,7 @@ h3 a:hover {
 
 #footer {
   color: #a0a8b0;
-  position: absolute;
+  position: relative;
   bottom: 0;
   line-height: 2.5em;
 }

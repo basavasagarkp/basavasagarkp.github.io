@@ -5,6 +5,10 @@ baseurl: ""
 url: "https://basavasagarkp.github.io"
 twitter_username: basavasagar18
 github_username:  bkpcoding
+future: true
+published: true
+# include mathjax
+mathjax: true
 
 # Build settings
 markdown: kramdown
