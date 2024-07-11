@@ -44,18 +44,6 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
     </style>
-    <style>
-        .footnote-popup {
-        display: none;
-        position: absolute;
-        background: #f9f9f9;
-        border: 1px solid #ddd;
-        padding: 10px;
-        max-width: 300px;
-        z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-    </style>
 
   </head>
 
@@ -154,28 +142,7 @@
 
     </div>
 
-    
     <script>
-        <div id="footnote-popup" class="footnote-popup"></div>
-        document.addEventListener('DOMContentLoaded', function() {
-            var footnoteLinks = document.querySelectorAll('a.footnote');
-            var popup = document.getElementById('footnote-popup');
-
-            footnoteLinks.forEach(function(link) {
-            link.addEventListener('mouseover', function(e) {
-                var footnoteId = this.getAttribute('href').substring(1);
-                var footnoteContent = document.getElementById(footnoteId).innerHTML;
-                popup.innerHTML = footnoteContent;
-                popup.style.display = 'block';
-                popup.style.left = e.pageX + 'px';
-                popup.style.top = (e.pageY + 20) + 'px';
-            });
-
-            link.addEventListener('mouseout', function() {
-                popup.style.display = 'none';
-            });
-            });
-        });
 
       // Isotope grid.
       var $grid = $('.grid').isotope({
