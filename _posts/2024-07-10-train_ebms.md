@@ -151,7 +151,7 @@ def train_energy_model(model, data, epochs=1000, lr=0.00001, batch_size=128):
 ```
 
 ## Denoising Score Matching
-Well, in most of the situation we do not have access to this log_true_pdf function, in such cases, Denoising Score Matching provides an elegant solution. The core idea of DSM is to work with a noise-perturbed version of our data, which allows us to sidestep the need for knowing the true data distribution while also making the method more robust to discrete or sharp features in the data.[[^1]]
+Well, in most of the situation we do not have access to this log_true_pdf function, in such cases, Denoising Score Matching provides an elegant solution. The core idea of DSM is to work with a noise-perturbed version of our data, which allows us to sidestep the need for knowing the true data distribution while also making the method more robust to discrete or sharp features in the data.
 
 
 The process begins by adding noise to our original data points. Typically, we use Gaussian noise, which has some desirable mathematical properties. This noise addition serves two purposes: it smooths out the data distribution, making it easier to model, and it provides us with a known reference point for our optimization process.
@@ -230,5 +230,3 @@ def train_nce(energy_model, num_epochs=1000, batch_size=128, noise_ratio=1, lr=0
   <figcaption>Datapoints and the corresponding energy function trained on these datapoints</figcaption>
 </figure>
 
-
-[^1]:1:  Uria, B., Côté, M. A., Gregor, K., Murray, I., & Larochelle, H. (2013). Neural autoregressive distribution estimation. arXiv preprint arXiv:1306.0186.
