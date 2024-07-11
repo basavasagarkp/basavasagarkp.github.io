@@ -24,7 +24,7 @@
     <div class="post">
       <header class="post-header">
         <!-- Move the title to the centre-->
-        <h1>{{ page.title }}</h1>
+        <h1-post>{{ page.title }}</h1-post>
         <p class="meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
       </header>
 
@@ -36,6 +36,7 @@
       © {{ site.time | date: "%Y" }} {{ site.title }}. All rights reserved.
     </footer>
   </div>
-  <script src="../code-copy-script.js"></script>
+  <script src="../../../../code-copy-script.js"></script>
+  <script src="../../../../js/footnote-popup.js"></script>
 </body>
 </html>

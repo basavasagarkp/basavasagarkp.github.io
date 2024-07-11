@@ -47,13 +47,17 @@ table {
 .math-display,
 .katex-display,
 p > span.math.math-display,
-div.math.math-display {
+.math-display {
   display: block;
   text-align: center;
-  margin: 2em 0;
+  margin: 0.5em 0;  /* Reduced margin for top and bottom */
   overflow-x: auto;
-  font-size: 1.1em;  /* Slightly larger font size for equations */
+  font-size: 0.9em;  /* Smaller font size for equations */
+  font-style: italic;  /* Italicize the font */
+  color: #2c3e50;  /* Darker color for better visibility */
 }
+
+
 
 /* Add space before and after equations */
 p + .math-display,
@@ -64,16 +68,23 @@ p + div.math.math-display,
 .katex-display + p,
 p > span.math.math-display + p,
 div.math.math-display + p {
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
-/* Ensure inline math doesn't break the line height */
+/* Ensure inline math is properly sized and italicized */
 .math-inline,
 .katex-inline,
 span.math.math-inline {
   vertical-align: middle;
+  font-size: 0.8em;  /* Smaller font size for inline equations */
+  font-style: italic;  /* Italicize the font */
+  color: #333;  /* Optional: Adjust text color */
 }
 
+/* Optional: Adjust the color for better contrast */
+.math-display, .katex-display, .math-inline, .katex-inline {
+  color: #2c3e50;  /* Darker color for better visibility */
+}
 /**************************************************/
 
 #body{
@@ -110,8 +121,14 @@ b {
 
 h1 {
   font-size: 2.4em;
-  line-height: 3em;
+  line-height: 2.5em;
   font-weight: 500;
+}
+h1-post {
+  font-size: 2.4em;
+  line-height: 4em;
+  font-weight: 500;
+  color: #150c21;
 }
 
 /**************************************************/
@@ -419,13 +436,54 @@ h3 a:hover {
   float: left;
 }
 
+figure {
+  margin: 0;
+  padding: 0;
+  display: inline-block; /* Aligns the figure with the text */
+  text-align: center;    /* Centers the caption */
+  max-width: 100%;       /* Ensures the image does not overflow the container */
+}
+
+figcaption {
+  font-size: 0.9em;      /* Adjust font size for the caption */
+  color: #555;          /* Caption color */
+  margin-top: 0.5em;    /* Space between the image and caption */
+  line-height: 1.5em;   /* Line height for the caption text */
+}
 
 /**************************************************/
 /* Subtle footer at the bottom of the page. */
+/* Style for footnote superscript links */
+.footnotes sup {
+  font-size: 0.8em; /* Smaller font size for the superscript */
+  color: #6c757d;  /* Gray color for the superscript link */
+}
 
-#footer {
-  color: #a0a8b0;
-  position: relative;
-  bottom: 0;
-  line-height: 2.5em;
+/* Style for the footnote section */
+.footnotes {
+  border-top: 1px solid #ddd; /* Border at the top of the footnotes */
+  padding-top: 1em; /* Space above the footnotes */
+  margin-top: 2em; /* Space below the main content */
+}
+
+/* Style for the footnote text */
+.footnotes ol {
+  list-style: none; /* Remove the default list style */
+  padding-left: 0; /* Remove the left padding */
+}
+
+.footnotes li {
+  margin-bottom: 0.5em; /* Space between footnotes */
+  color: #6c757d; /* Gray color for the footnote text */
+}
+
+/* Style for the footnote links */
+.footnotes a {
+  color: #6c757d; /* Gray color for the footnote link */
+  text-decoration: none; /* Remove underline from the link */
+}
+
+.footnotes a:hover {
+  text-decoration: underline; /* Underline on hover */
+  color: #5a6268; /* Slightly darker gray on hover */
 }

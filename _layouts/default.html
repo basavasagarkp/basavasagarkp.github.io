@@ -44,6 +44,19 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
     </style>
+    <style>
+        .footnote-popup {
+        display: none;
+        position: absolute;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px;
+        max-width: 300px;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+
   </head>
 
   <body id="body">
@@ -65,6 +78,7 @@
             <br>
             <a href="https://github.com/bkpcoding">Github</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="https://scholar.google.com/citations?user=tV-esHoAAAAJ&hl=en&oi=sra">G. Scholar</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.goodreads.com/user/show/67192598-sagar"> Goodreads</a>
             <!-- <a href="https://www.linkedin.com/in/basavasagar-patil">LinkedIn</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
             <a href="https://twitter.com/basavasagar18">Twitter</a>
             <br><br>
@@ -131,7 +145,7 @@
 
       <!-- Blog Posts-->
       <div class="list-item blogs data-category="blogs">
-        <a href="{% post_url 2024-07-10-train_ebms %}">Train Methods for EBMs</a>
+        <a href="{% post_url 2024-07-10-train_ebms %}">Training Methods for EBMs</a>
         </div>
       </div>
 
@@ -140,7 +154,28 @@
 
     </div>
 
+    
     <script>
+        <div id="footnote-popup" class="footnote-popup"></div>
+        document.addEventListener('DOMContentLoaded', function() {
+            var footnoteLinks = document.querySelectorAll('a.footnote');
+            var popup = document.getElementById('footnote-popup');
+
+            footnoteLinks.forEach(function(link) {
+            link.addEventListener('mouseover', function(e) {
+                var footnoteId = this.getAttribute('href').substring(1);
+                var footnoteContent = document.getElementById(footnoteId).innerHTML;
+                popup.innerHTML = footnoteContent;
+                popup.style.display = 'block';
+                popup.style.left = e.pageX + 'px';
+                popup.style.top = (e.pageY + 20) + 'px';
+            });
+
+            link.addEventListener('mouseout', function() {
+                popup.style.display = 'none';
+            });
+            });
+        });
 
       // Isotope grid.
       var $grid = $('.grid').isotope({

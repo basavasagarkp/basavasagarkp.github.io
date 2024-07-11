@@ -8,7 +8,7 @@ date: 2024-07-10
 
 ## Training Methods of Energy Based Models
 Energy based models try to learn unnormalized probabilities or energies of a input based on the given data distribution. The functions assign lower energies to the input data while assigning higher energies to unseen data during training. Let this energy function be parameterized by parameters $\theta$, hence, energy for a random variable $x$ is given by $E_\theta(x)$. But this energy itself means nothing until we can convert it to a probability, which, we can do by using the simple probability formula, that the probability of the event is the occurance of the event divided by the occurance of all the other events, i.e.,
-<div class="latex-equation">
+<div class="math-display">
 $$
 p_\theta(x) = \frac{exp(-E_\theta(x))}{\int_{x} exp(-E_{\theta}(x))dx }
 $$
@@ -16,14 +16,14 @@ $$
 
 
 Let us define the integral as a constant,
-<div class="latex-equation">
+<div class="math-display">
 $$\int_x \exp(-E_{\theta}(x))dx = Z_{\theta}$$
 </div>
 this new constant, $Z_\theta$, is called the normalizing constant or the partition function, such that $\int p_\theta(\mathbf{x}) \mathrm{d} \mathbf{x}=1$. This constant is usually intractable, why so? Because as you can see the calculation of this constant requires calculating the integral over all the possible values of the random variable $x$. This is what usually makes training energy based models difficult, however, there are quite a few methods to approximate the density function which can make the learning a bit more efficient. 
 
 
 Our goal is to train the get the parameters $\theta$ for the EBM such that it models the true data distribution, which essentially as in most machine learning boils down to Maximum Likelihood Estimation. The MLE can be defined as,
-<div class="latex-equation">
+<div class="math-display">
 $$
 \theta^* = argmax \space \mathbb{E}_{x\sim p_{data}}[\log(p_{\theta}(x))] 
 $$
@@ -31,13 +31,13 @@ $$
 As mentioned mentioned above computing the $p_\theta$ in the above objective is infeasible. 
 
 Since, we have our objective defined to calculate $\theta^*$, we need to compute the gradient of the log-likelihood, which breaks down to
-<div class="latex-equation">
+<div class="math-display">
 $$
 \nabla_{\boldsymbol{\theta}} \log p_\theta(\mathbf{x})=-\nabla_{\boldsymbol{\theta}} E_{\boldsymbol{\theta}}(\mathbf{x})-\nabla_{\boldsymbol{\theta}} \log Z_{\boldsymbol{\theta}} .
 $$
 </div>
 The first term can be calculated easily using automatic differentiation tools. The second term is tricky, but it turns out we can express this as an expectation:
-<div class="latex-equation">
+<div class="math-display">
 $$
 \nabla_{\boldsymbol{\theta}} \log Z_{\theta}=\mathbb{E}_{\mathbf{x} \sim p_\theta(\mathbf{x})}\left[-\nabla_\theta E_\theta(\mathbf{x})\right]
 $$
@@ -51,7 +51,7 @@ MCMC methods are probably one of the most infamous methods in engineering and sc
 2. Wander: Move around the distribution following specific rules (e.g. Langevin dynamics).
 3. Sample: Periodically record the current position as a sample.
 There are many algorithms that provide us these rules to move around, one of the popular methods is Langevin MCMC. At first, we draw a random sample from a simple prior distribution (usually Gaussian noise) and then iteratively denoise this using Langevin dynamics with a step size $\epsilon > 0$ (we also some stochasticity $z^k$ at each step to help preserve the multimodality),
-<div class="latex-equation">
+<div class="math-display">
 $$
 \mathbf{x}^{k+1} \leftarrow \mathbf{x}^k+\frac{\epsilon^2}{2} \underbrace{\nabla_{\mathbf{x}} \log p_\theta\left(\mathbf{x}^k\right)}_{=-\nabla_{\mathbf{x}} E_\theta(\mathbf{x})}+\epsilon \mathbf{z}^k, \quad k=0,1, \cdots, K-1 .
 $$
@@ -89,13 +89,16 @@ def train_ebm(model, data, num_epochs=500, batch_size=100, lr=1e-4):
             print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}")
 
 ```
+<figure>
+  <img src="../../../../assets/images/mcmc.png" alt="Description of Image" width="800" height="500"/>
+  <figcaption>Datapoints and the corresponding energy function trained on these datapoints</figcaption>
+</figure>
 
-![[mcmc.png]]
 ## Score Based Matching
 
 While MCMC methods offer a powerful approach to training Energy-Based Models, they can sometimes be computationally expensive and face challenges with mixing and convergence, especially in high-dimensional spaces. Score Matching is an alternative method that circumvents some of these issues by focusing on a different aspect of the model: its score function.
 The score function is a fundamental concept in statistics that provides a different perspective on probability distributions. For a probability density function p(x), the score function is defined as the gradient of the log-probability with respect to the input, $\nabla_x \log(p(x))$. In the context of EBMs, as mentioned previously this takes an elegant form 
-<div class="latex-equation">
+<div class="math-display">
 $$
 \nabla_{\mathbf{x}} \log p_\theta(\mathbf{x})=-\nabla_{\mathbf{x}} E_{\boldsymbol{\theta}}(\mathbf{x})-\underbrace{\nabla_{\mathbf{x}} \log Z_\theta}_{=0}=-\nabla_{\mathbf{x}} E_\theta(\mathbf{x}) .
 $$
@@ -104,7 +107,7 @@ This simple relationship allows us to work directly with the energy function E(x
 
 
 **Fisher Divergence**: To train our EBM using score matching, we need a way to measure how well our model's score function matches that of the true data distribution. This is where the Fisher divergence comes into play. The Fisher divergence between two distributions p and q is defined as:
-<div class="latex-equation">
+<div class="math-display">
 $$
 D_F\left(p_{\text {data }}(\mathbf{x}) \| p_{\boldsymbol{\theta}}(\mathbf{x})\right)=\mathbb{E}_{p_{\text {data }}(\mathbf{x})}\left[\frac{1}{2}\left\|\nabla_{\mathbf{x}} \log p_{\text {data }}(\mathbf{x})-\nabla_{\mathbf{x}} \log p_{\boldsymbol{\theta}}(\mathbf{x})\right\|^2\right]
 $$
@@ -148,7 +151,7 @@ def train_energy_model(model, data, epochs=1000, lr=0.00001, batch_size=128):
 ```
 
 ## Denoising Score Matching
-Well, in most of the situation we do not have access to this log_true_pdf function, in such cases, Denoising Score Matching provides an elegant solution. The core idea of DSM is to work with a noise-perturbed version of our data, which allows us to sidestep the need for knowing the true data distribution while also making the method more robust to discrete or sharp features in the data.
+Well, in most of the situation we do not have access to this log_true_pdf function, in such cases, Denoising Score Matching provides an elegant solution. The core idea of DSM is to work with a noise-perturbed version of our data, which allows us to sidestep the need for knowing the true data distribution while also making the method more robust to discrete or sharp features in the data.[[^1]]
 
 
 The process begins by adding noise to our original data points. Typically, we use Gaussian noise, which has some desirable mathematical properties. This noise addition serves two purposes: it smooths out the data distribution, making it easier to model, and it provides us with a known reference point for our optimization process.
@@ -164,6 +167,68 @@ Now comes the key insight of DSM: for Gaussian noise, we know the optimal denois
 
 
 The DSM loss is then computed as the mean squared difference between our model's score and this optimal denoising direction. By minimizing this loss, we're effectively training our model to denoise the perturbed data points optimally. This process, somewhat surprisingly, is equivalent to minimizing the Fisher divergence between our model and the noise-perturbed data distribution.
-![[denoising_sm.png]]
+<figure>
+  <img src="../../../../assets/images/denoising_sm.png" alt="Description of Image" width="800" height="500"/>
+  <figcaption>Datapoints and the corresponding energy function trained on these datapoints</figcaption>
+</figure>
+
+
 
 ## Noise Contrastive Estimation
+
+```python
+
+def nce_loss(energy_model, data, noise, noise_ratio=1):
+    batch_size = data.shape[0]
+    
+    # Concatenate data and noise
+    all_samples = torch.cat([data, noise], dim=0)
+    
+    # Compute energy for all samples
+    energies = energy_model(all_samples).squeeze()
+    
+    # Split energies for data and noise
+    data_energies = energies[:batch_size]
+    noise_energies = energies[batch_size:]
+    
+    # Compute log-odds
+    log_odds_data = -data_energies - torch.log(torch.tensor(noise_ratio, dtype=torch.float32))
+    log_odds_noise = -noise_energies + torch.log(torch.tensor(noise_ratio, dtype=torch.float32))
+    
+    # Compute binary cross-entropy loss
+    loss_data = nn.functional.binary_cross_entropy_with_logits(log_odds_data, torch.ones_like(log_odds_data))
+    loss_noise = nn.functional.binary_cross_entropy_with_logits(log_odds_noise, torch.zeros_like(log_odds_noise))
+    
+    # Combine losses
+    loss = loss_data + noise_ratio * loss_noise
+    
+    return loss
+
+def train_nce(energy_model, num_epochs=1000, batch_size=128, noise_ratio=1, lr=0.001):
+    optimizer = optim.Adam(energy_model.parameters(), lr=lr)
+    
+    for epoch in range(num_epochs):
+        # Sample data and noise
+        data_batch = sample_data(batch_size)
+        noise_batch = sample_noise(batch_size * noise_ratio)
+        
+        # Compute loss
+        loss = nce_loss(energy_model, data_batch, noise_batch, noise_ratio)
+        
+        # Backpropagation and optimization
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        
+        if (epoch + 1) % 100 == 0:
+            print(f"Epoch {epoch+1}/{num_epochs}, Loss: {loss.item():.4f}")
+
+```
+
+<figure>
+  <img src="../../../../assets/images/nce.png" alt="Description of Image" width="800" height="500"/>
+  <figcaption>Datapoints and the corresponding energy function trained on these datapoints</figcaption>
+</figure>
+
+
+[^1]:1:  Uria, B., Côté, M. A., Gregor, K., Murray, I., & Larochelle, H. (2013). Neural autoregressive distribution estimation. arXiv preprint arXiv:1306.0186.
