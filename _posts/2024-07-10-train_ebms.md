@@ -15,6 +15,7 @@ $$
 </div>
 
 
+
 Let us define the integral as a constant,
 <div class="math-display">
 $$\int_x \exp(-E_{\theta}(x))dx = Z_{\theta}$$
@@ -103,7 +104,7 @@ $$
 \nabla_{\mathbf{x}} \log p_\theta(\mathbf{x})=-\nabla_{\mathbf{x}} E_{\boldsymbol{\theta}}(\mathbf{x})-\underbrace{\nabla_{\mathbf{x}} \log Z_\theta}_{=0}=-\nabla_{\mathbf{x}} E_\theta(\mathbf{x}) .
 $$
 </div>
-This simple relationship allows us to work directly with the energy function E(x) without worrying about the intractable normalization constant that often complicates MCMC-based training.
+This simple relationship allows us to work directly with the energy function $E(x)$ without worrying about the intractable normalization constant that often complicates MCMC-based training.
 
 
 **Fisher Divergence**: To train our EBM using score matching, we need a way to measure how well our model's score function matches that of the true data distribution. This is where the Fisher divergence comes into play. The Fisher divergence between two distributions p and q is defined as:
@@ -173,8 +174,27 @@ The DSM loss is then computed as the mean squared difference between our model's
 </figure>
 
 
-
 ## Noise Contrastive Estimation
+
+The main idea behind Noise Contrastive Estimation (NCE) is to distinguish data distribution from noise distribution. Imagine we have a set of genuine data points ${x_1,x_2,…,x_n}$ sampled from the true data distribution $p_{\text{data}}$, and a set of noise points ${y_1, y_2, \ldots, y_m}$ sampled from a known noise distribution $p_{\text{noise}}$. The idea behind NCE is to teach the model to differentiate between these real data points and the noise points. Instead of directly estimating the probability distribution of the data, NCE focuses on the task of classification, which is more straightforward.
+
+The key to NCE lies in the computation of energy values for both data and noise samples using energy-based model. This energy model assigns a score to each sample, where lower energy corresponds to high likelihood. We aim to train the model such that real data points ahve lower energy score compared to noise points.
+
+Mathematically, for a given sample $x$ from the data and $y$ from the noise, our energy model $E_{\theta}$(.) computes the energy value $E_{\theta}(x)$ and $E_{\theta}(y)$. To differentiate betweeen data and noise, we calculate the log-odds for each type of sample. The log-odds for a data sample $x$ can be expressed as:
+<div class="math-display">
+$$
+\log \frac{p_{\text {dstat }}(x)}{p_{\text {moles }}(x)}=-E(x)-\log k
+$$
+</div>
+where $k$ is the noise ratio (the ratio of noise samples to data samples). Similarly, for a noise sample $y$, the log-odds are
+<div class="math-display">
+$$
+\log \frac{p_{\text {data }}(y)}{p_{\text {mulef }}(y)}=-E(y)+\log k
+$$
+</div>
+(If you have ever used particle filter in robotics for mapping, this might look similar to you. The real datapoints here are obstacles and other points are free space, we aim to get the probability distribution of the obstacle over the space.)
+
+The training objective is to maximize the likelihood of correctly classifying the samples. This is achieved by minimizing the binary cross-entropy loss, which is a standard loss function for classification tasks. For data samples, the target label is 1 (data), and for noise samples, the target label is 0 (noise).  
 
 ```python
 
@@ -229,4 +249,3 @@ def train_nce(energy_model, num_epochs=1000, batch_size=128, noise_ratio=1, lr=0
   <img src="../../../../assets/images/nce.png" alt="Description of Image" width="800" height="500"/>
   <figcaption>Datapoints and the corresponding energy function trained on these datapoints</figcaption>
 </figure>
-
