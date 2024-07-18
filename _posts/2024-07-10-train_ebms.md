@@ -254,4 +254,4 @@ def train_nce(energy_model, num_epochs=1000, batch_size=128, noise_ratio=1, lr=0
 </figure>
 
 ## References
-1. How to Train Your Energy-Based Models, Yang Song, Diederik P. Kingma, 2021
+ "How to Train Your Energy-Based Models", Yang Song, Diederik P. Kingma, 2021, arxiv.org/abs/2101.03288
