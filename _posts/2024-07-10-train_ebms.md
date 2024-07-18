@@ -4,9 +4,13 @@ title: "Training Energy-Based Models"
 author: "Sagar"
 date: 2024-07-10
 ---
+{%- include mathjax.html -%}
 
 
 ## Training Methods of Energy Based Models
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rUpgPS3N5Dy97Rg7v3hEsxcxg3PdvPuF?usp=sharing)
+
 Energy based models try to learn unnormalized probabilities or energies of a input based on the given data distribution. The functions assign lower energies to the input data while assigning higher energies to unseen data during training. Let this energy function be parameterized by parameters $\theta$, hence, energy for a random variable $x$ is given by $E_\theta(x)$. But this energy itself means nothing until we can convert it to a probability, which, we can do by using the simple probability formula, that the probability of the event is the occurance of the event divided by the occurance of all the other events, i.e.,
 <div class="math-display">
 $$
@@ -52,12 +56,11 @@ MCMC methods are probably one of the most infamous methods in engineering and sc
 2. Wander: Move around the distribution following specific rules (e.g. Langevin dynamics).
 3. Sample: Periodically record the current position as a sample.
 There are many algorithms that provide us these rules to move around, one of the popular methods is Langevin MCMC. At first, we draw a random sample from a simple prior distribution (usually Gaussian noise) and then iteratively denoise this using Langevin dynamics with a step size $\epsilon > 0$ (we also some stochasticity $z^k$ at each step to help preserve the multimodality),
-<div class="math-display">
-$$
-\mathbf{x}^{k+1} \leftarrow \mathbf{x}^k+\frac{\epsilon^2}{2} \underbrace{\nabla_{\mathbf{x}} \log p_\theta\left(\mathbf{x}^k\right)}_{=-\nabla_{\mathbf{x}} E_\theta(\mathbf{x})}+\epsilon \mathbf{z}^k, \quad k=0,1, \cdots, K-1 .
-$$
-</div>
-This can whole training process can be written in these two python functions,
+<figure>
+  <img src="../../../../assets/images/mcmc_equation.png" alt="Description of Image" width="550" height="80"/>
+</figure>
+
+This whole training process can be written in these two python functions,
 
 ```python
 def langevin_dynamics(model, x, num_steps=100, step_size=0.1):
