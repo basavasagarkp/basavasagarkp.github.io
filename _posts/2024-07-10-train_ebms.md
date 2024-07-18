@@ -252,3 +252,6 @@ def train_nce(energy_model, num_epochs=1000, batch_size=128, noise_ratio=1, lr=0
   <img src="../../../../assets/images/nce.png" alt="Description of Image" width="800" height="500"/>
   <figcaption>Datapoints and the corresponding energy function trained on these datapoints</figcaption>
 </figure>
+
+## References
+1. How to Train Your Energy-Based Models, Yang Song, Diederik P. Kingma, 2021
