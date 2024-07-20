@@ -436,6 +436,20 @@ h3 a:hover {
   float: left;
 }
 
+.image-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;  /* Adds space between the figures */
+  width: 100%;
+}
+
 figure {
   margin: 0;
   padding: 0;
@@ -450,6 +464,11 @@ figcaption {
   margin-top: 0.5em;    /* Space between the image and caption */
   line-height: 1.5em;   /* Line height for the caption text */
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 /**************************************************/
 /* Subtle footer at the bottom of the page. */
