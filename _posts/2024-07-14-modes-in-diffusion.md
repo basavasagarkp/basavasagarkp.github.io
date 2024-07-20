@@ -19,6 +19,7 @@ In statistical terms, a mode is a peak in the probability distribution of your d
 <div class="image-container">
 <figure>
   <img src="../../../../assets/images/modes.png" alt="Description of Image" width="525" height="500"/>
+  <figcaption> Three modes in a distribution </figcaption>
 </figure>
 </div>
 
@@ -29,6 +30,8 @@ Well, the concept of modes and the need to learn them is nothing new, [Gaussian 
 <div class="image-container">
 <figure>
   <img src="../../../../assets/images/gmm_mode_collapse.png" alt="Description of Image" width="525" height="500"/>
+  <figcaption> An Illustration of Mode Collapse in GMMs when
+  we do not know the true number of modes </figcaption>
 </figure>
 </div>
 
@@ -42,6 +45,8 @@ But why doesn't mode collapse occur in Diffusion Models (compared to other metho
 <div class="image-container">
 <figure>
   <img src="../../../../assets/images/diffusion_mean_blog_comp.gif" alt="Description of Image" width="525" height="500"/>
+    <figcaption>An Illustration of how diffusion models learning at different scales of data during iterative timesteps. Adapted from <a href="https://x.com/alec_helbling/status/1783378117249089625?t=yvEXY9j9DVOhcVzPsSDc-g&s=08">Alec Helbling</a></figcaption>
+
 </figure>
 </div>
 
@@ -67,12 +72,13 @@ Another main reason why diffusion models are able to capture and generate multip
     <figcaption>Conditioned on 2</figcaption>
   </figure>
 </div>
+Another great advantage of diffusion models is that they render themselves to conditional generation, i.e., we can condition the generation process on some input that directs the mode of convergence. That is really cool, not only can we get sample but we can get the sample we want based on high-level conditional data. And the icing on top of the cake is that the conditioning of diffusion models is also flexible, which means we can condition the generation of sample either using a number or a language prompt or an image. This is especially useful in robotics where you want to convert control your robots action or policy using high-level natural language commands. Here in the below example, I sample a data point from the distribution based on numerical specification of the mode.
 
 <div class="image-container">
 <figure>
   <img src="../../../../assets/images/diffusion_policy_multimodality.png" alt="Description of Image" width="200" height="200"/>
+  <figcaption> Multi-modal paths for achieving the same goal in robotics. Diffusion Model (policy) is able to preserve these modes, which is especially useful in robotics. Adapted from <a href="https://diffusion-policy.cs.columbia.edu/diffusion_policy_2023.pdf">Diffusion Policy</a></figcaption>
 </figure>
 </div>
 
 
-Another great advantage of diffusion models is that they render themselves to conditional generation, i.e., we can condition the generation process on some input that directs the mode of convergence. That is really cool, not only can we get sample but we can get the sample we want based on high-level conditional data. And the icing on top of the cake is that the conditioning of diffusion models is also flexible, which means we can condition the generation of sample either using a number or a language prompt or an image. This is especially useful in robotics where you want to convert control your robots action or policy using high-level natural language commands. Here in the below example, I sample a data point from the distribution based on numerical specification of the mode. 
