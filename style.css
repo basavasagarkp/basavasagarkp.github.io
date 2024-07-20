@@ -437,7 +437,7 @@ h3 a:hover {
 }
 
 .image-container {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   width: 100%;
 }
