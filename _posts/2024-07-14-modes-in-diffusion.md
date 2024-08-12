@@ -2,7 +2,7 @@
 layout: post
 title: "Modes in Diffusion Models"
 author: "Sagar"
-date: 2024-07-10
+date: 2024-07-14
 ---
 {%- include mathjax.html -%}
 
@@ -74,9 +74,30 @@ Another main reason why diffusion models are able to capture and generate multip
 </div>
 Another great advantage of diffusion models is that they render themselves to conditional generation, i.e., we can condition the generation process on some input that directs the mode of convergence. That is really cool, not only can we get sample but we can get the sample we want based on high-level conditional data. And the icing on top of the cake is that the conditioning of diffusion models is also flexible, which means we can condition the generation of sample either using a number or a language prompt or an image. This is especially useful in robotics where you want to convert control your robots action or policy using high-level natural language commands. Here in the below example, I sample a data point from the distribution based on numerical specification of the mode.
 
+#### No Free Lunch, here too!
+
+Well, okay diffusion models are able to capture modes better than GMMs while avoiding mode collapse, but it comes at a cost. Look at the below figure, if we have means a bit closer than they are, diffusion model produces samples that are in-between the two modes (mode interpolation). This might be the reason for hallucinations that you see in most of the diffusion models outputs in internet. 
+
 <div class="image-container">
 <figure>
-  <img src="../../../../assets/images/diffusion_policy_multimodality.png" alt="Description of Image" width="200" height="200"/>
+  <img src="../../../../assets/images/mode_close.png" alt="Description of Image" width="300" height="300"/>
+  <figcaption> When the modes of the data are close, diffusion models interpolate between the modes during sampling causing hallucinations.</figcaption>
+</figure>
+</div>
+
+
+Now why this happens?  As mentioned above the diffusion models learn the mean of the distribution first and then specific offsets. In frequency domain this could be termed as learning low-frequency first and then high-frequency. And neural networks particularly CNNs (which are most widely used neural network architecture for diffusion) have high affinity towards <a href="https://arxiv.org/abs/2006.10739"> low-frequency</a>. So they are able to model low-frequency or mean of the distribution perfectly but when it comes to high-frequency components they interpolate. This interpolation in high-frequency domain leads to mode interpolation when they are nearby. This is shown by Aithal et al. [<a href="https://arxiv.org/pdf/2406.09358"> 1 </a>] where they hypothesize that the mode interpolation might be due to inability of the neural network to mode high-frequency change in score function. 
+
+I will shamelessly plug my own paper on this topic, where we tried to solve similar issue (we had in mind the high-frequency change in value function of a RL agent) albeit for lower-dimensional input space. 
+
+Well one can solve this by training longer, but that could come at the risk of overfitting the model and reducing the diversity and also this can become increasingly infeasible as the data increases. *I also hypothesize that training for longer might create a more discontinuous function which when coupled with stochastic denoising can make reliability a huge problem and might also make the models more susceptible to adversarial attacks.*
+
+
+
+
+<div class="image-container">
+<figure>
+  <img src="../../../../assets/images/diffusion_policy_multimodality.png" alt="Description of Image" width="300" height="300"/>
   <figcaption> Multi-modal paths for achieving the same goal in robotics. Diffusion Model (policy) is able to preserve these modes, which is especially useful in robotics. Adapted from <a href="https://diffusion-policy.cs.columbia.edu/diffusion_policy_2023.pdf">Diffusion Policy</a></figcaption>
 </figure>
 </div>
