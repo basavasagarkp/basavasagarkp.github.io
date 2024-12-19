@@ -13,7 +13,6 @@ Per sample gradients are cool. They can be used for many things, such as data-at
 ## What are Per-Sample Gradients and How they are helpful?
 
 Let $\mathit{X}$ be our input space and $\mathit{Y}$ be our output space. For a dataset $\mathit{D} = {(x\_i, y\_i)}\_{i=1}^n$ where $x\_i \in \mathit{X}$ and $y_i \in \mathit{Y}$, a neural network can be viewed as a parameterized function $f_\theta: \mathit{X} \rightarrow \mathit{Y}$ with parameters $\theta \in \Theta$.
-
 For each sample $(x_i, y_i)$, we define a loss $\ell_i(\theta) = \ell(f_\theta(x_i), y_i)$ where $\ell: \mathit{Y} \times \mathit{Y} \rightarrow \mathbb{R}^+$. The total loss over the dataset is $L(\theta) = \frac{1}{n}\sum_{i=1}^n \ell_i(\theta)$. 
 
 While training with large datasets, computing gradients for all samples simultaneously becomes infeasible. Instead, we typically compute gradients using mini-batches: $\nabla_\theta L(\theta) = \frac{1}{n}\sum_{i=1}^n \nabla_\theta \ell_i(\theta)$. Per-sample gradients represent the individual contribution $\nabla_\theta \ell_i(\theta)$ for each sample $i$. While we could theoretically obtain these by using a batch size of one, this would be computationally inefficient. In the following sections, we will go through how we can calculate the per-sample gradients efficiently from batch-gradients for different types of layers in neural networks, before that let us look at some of the reasons where per-sample gradients might be helpful.
