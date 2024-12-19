@@ -12,9 +12,7 @@ Per sample gradients are cool. They can be used for many things, such as data-at
 
 ## What are Per-Sample Gradients and How they are helpful?
 
-## What are Per-Sample Gradients and How they are helpful?
-
-Let $\mathit{X}$ be our input space and $\mathit{Y}$ be our output space. For a dataset $\mathit{D} = {(x_i, y_i)}_{i=1}^n$ where $x_i \in \mathit{X}$ and $y_i \in \mathit{Y}$, a neural network can be viewed as a parameterized function $f_\theta: \mathit{X} \rightarrow \mathit{Y}$ with parameters $\theta \in \Theta$. 
+Let $\mathit{X}$ be our input space and $\mathit{Y}$ be our output space. For a dataset $\mathit{D} = {(x\_i, y\_i)}\_{i=1}^n$ where $x\_i \in \mathit{X}$ and $y_i \in \mathit{Y}$, a neural network can be viewed as a parameterized function $f_\theta: \mathit{X} \rightarrow \mathit{Y}$ with parameters $\theta \in \Theta$.
 
 For each sample $(x_i, y_i)$, we define a loss $\ell_i(\theta) = \ell(f_\theta(x_i), y_i)$ where $\ell: \mathit{Y} \times \mathit{Y} \rightarrow \mathbb{R}^+$. The total loss over the dataset is $L(\theta) = \frac{1}{n}\sum_{i=1}^n \ell_i(\theta)$. 
 
