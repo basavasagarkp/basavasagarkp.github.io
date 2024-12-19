@@ -9,7 +9,7 @@ date: 2024-07-14
 
 ## 				What are Modes in Diffusion Models?
 
-Diffusion models are great, they take the idea of iterative noise into a data point, which is like gradient descent at inference. Slowly, these models are peneterating robotics as well, because of one main feature that I want to explain here. It is their ability to learn different modes in the data and conditionally generate a sample from one of these modes at inference time. 
+Diffusion models have emerged as a powerful tool in machine learning, particularly for their ability to generate high-quality samples. While their iterative noise-to-data process resembles gradient descent at inference, there's one key feature that makes them especially valuable for robotics: their ability to learn and generate samples from different modes in the data distribution. In this post, I'll explain what these modes are, why they matter, and how diffusion models handle them.
 
 ## But what are modes?
 
@@ -23,9 +23,20 @@ In statistical terms, a mode is a peak in the probability distribution of your d
 </figure>
 </div>
 
-## Gaussian Mixture Models (GMMs)
+## Mode Collapse
+Mode collapse occurs when a model fails to capture the full diversity of the data distribution, instead converging to a single mode or a subset of modes while ignoring others. This is particularly problematic in real-world applications where capturing the full range of possible solutions is crucial.
 
-Well, the concept of modes and the need to learn them is nothing new, [Gaussian Mixture Models](https://scikit-learn.org/stable/modules/mixture.html) have been known since 1950s. However, there are multiple problems with them, but their one main problem is mode collapse. Mode collapes occurs in GMMs when multiple true modes in the data are merged into a single Gaussian component. This happens because the model tries to fit the data into a predefined number of Gaussians, which may not match the true number of modes.
+For example, assume that your data has two modes. And you are naively trying to fit it through a simple-regression model then you might end-up with a solution whose empirical risk might be minimum but when you sample from this distribution, you will be out of distribution. This is one example of mode-collapse.
+<div class="image-container">
+<figure>
+  <img src="../../../../assets/images/multi_modal_collapse.png" alt="Description of Image" width="800" height="1000"/>
+  <figcaption> Unexpected consequences of not taking into account multi-modality of the data. The above examples tries to fit two modes using least square regression, however, the distribution doesn't match any of the modes. Adapted from <a href="https://www.youtube.com/watch?v=jIB_joS7ww8&t=8547s">RSS 2024 Tutorial: Supervised Policy Learning for Real Robots</a></figcaption>
+</figure>
+</div>
+
+
+**Mode Collapse in Gaussian Mixture Models (GMMs)**
+Well, the concept of mode collapse is nothing new, it is well known and one of the famous solution for this is [Gaussian Mixture Models](https://scikit-learn.org/stable/modules/mixture.html) which we have known since 1950s. However, model collape occurs in GMMs also! This happens when multiple true modes in the data are merged into a single Gaussian component. This is because the model tries to fit the data into a predefined number of Gaussians (a hyperparameter that we need to specify), which may not match the true number of modes.
 
 <div class="image-container">
 <figure>
@@ -75,31 +86,33 @@ Another main reason why diffusion models are able to capture and generate multip
 Another great advantage of diffusion models is that they render themselves to conditional generation, i.e., we can condition the generation process on some input that directs the mode of convergence. That is really cool, not only can we get sample but we can get the sample we want based on high-level conditional data. And the icing on top of the cake is that the conditioning of diffusion models is also flexible, which means we can condition the generation of sample either using a number or a language prompt or an image. This is especially useful in robotics where you want to convert control your robots action or policy using high-level natural language commands. Here in the below example, I sample a data point from the distribution based on numerical specification of the mode.
 
 ## No Free Lunch, here too!
-
-Well, okay diffusion models are able to capture modes better than GMMs while avoiding mode collapse, but it comes at a cost. Look at the below figure, if we have means a bit closer than they are, diffusion model produces samples that are in-between the two modes (mode interpolation). This might be the reason for hallucinations that you see in most of the diffusion models outputs in internet. 
+While diffusion models offer impressive capabilities in capturing multiple modes, they aren't without their limitations. One particularly interesting challenge emerges when dealing with closely spaced modes. Look at the below figure, if we have means a bit closer than they are, diffusion model produces samples that are in-between the two modes (mode interpolation). This might be the reason for hallucinations that you see in most of the diffusion models outputs in internet.
 
 <div class="image-container">
 <figure>
-  <img src="../../../../assets/images/mode_close.png" alt="Description of Image" width="300" height="300"/>
+  <img src="../../../../assets/images/mode_close.png" alt="Description of Image" width="500" height="500"/>
   <figcaption> When the modes of the data are close, diffusion models interpolate between the modes during sampling causing hallucinations.</figcaption>
 </figure>
 </div>
 
+Now why this happens?  As mentioned above the diffusion models learn the mean of the distribution first and then specific offsets. In frequency domain this could be termed as learning low-frequency first and then high-frequency. And neural networks particularly CNNs (which are most widely used neural network architecture for diffusion) have high affinity towards <a href="https://arxiv.org/abs/2006.10739"> low-frequency</a>. So they are able to model low-frequency or mean of the distribution perfectly but when it comes to high-frequency components they interpolate. This interpolation in high-frequency domain leads to mode interpolation when they are nearby. This is shown by <a href="https://arxiv.org/pdf/2406.09358"> Aithal et al. </a> where they hypothesize that the mode interpolation might be due to inability of the neural network to mode high-frequency change in score function. 
 
-Now why this happens?  As mentioned above the diffusion models learn the mean of the distribution first and then specific offsets. In frequency domain this could be termed as learning low-frequency first and then high-frequency. And neural networks particularly CNNs (which are most widely used neural network architecture for diffusion) have high affinity towards <a href="https://arxiv.org/abs/2006.10739"> low-frequency</a>. So they are able to model low-frequency or mean of the distribution perfectly but when it comes to high-frequency components they interpolate. This interpolation in high-frequency domain leads to mode interpolation when they are nearby. This is shown by Aithal et al. [<a href="https://arxiv.org/pdf/2406.09358"> 1 </a>] where they hypothesize that the mode interpolation might be due to inability of the neural network to mode high-frequency change in score function. 
-
-I will shamelessly plug my own paper [<a href="https://arxiv.org/abs/2311.16148"> 2</a>] on this topic, where we tried to solve similar issue (we had in mind the high-frequency change in value function of a RL agent) albeit for lower-dimensional input space. 
+I will shamelessly plug <a href="https://arxiv.org/abs/2311.16148"> my own paper </a> on this topic, where we tried to solve similar issue (we had in mind the high-frequency change in value function of a RL agent) albeit for lower-dimensional input space. 
 
 Well one can solve this by training longer, but that could come at the risk of overfitting the model and reducing the diversity and also this can become increasingly infeasible as the data increases. *I also hypothesize that training for longer might create a more discontinuous function which when coupled with stochastic denoising can make reliability a huge problem and might also make the models more susceptible to adversarial attacks.*
 
-## Diffusion Modes in Robotics
 
-Although given this disadvantage, diffusion models can still be useful for robotics, especially if the control doesn't involve high-frequency changes in the data. Due to their ability to handle multi-modal data and conditional generation, diffusion models learn inherently mult-modal robotics tasks such as one shown below.
+
+## Modes in Robotics
+Multi-modality is very important property of robotics data. Actually almost all of the data is inherently multi-modal because there are always multiple answers for a same question unless you starting putting constraints. There might be millions of images that a generative image model might generate when you say dog, but as you put more and more constraints in your prompt the search space reduces and we get specific outputs. Same in language models, unless you are very specific the output can be unpredictable. For robotics, it means that we need our model to learn all the possible way to achieve a goal, and during inference as the constraints pop-up it changes or shifts its solution.
 <div class="image-container">
 <figure>
   <img src="../../../../assets/images/diffusion_policy_multimodality.png" alt="Description of Image" width="300" height="300"/>
   <figcaption> Multi-modal paths for achieving the same goal in robotics. Diffusion Model (policy) is able to preserve these modes, which is especially useful in robotics. Adapted from <a href="https://diffusion-policy.cs.columbia.edu/diffusion_policy_2023.pdf">Diffusion Policy</a></figcaption>
 </figure>
 </div>
-
-
+Consider the task above, which is an example of two dominant ways in which we can solve a problem and how it is modeled by a diffusion model. 
+## References
+<a href="https://arxiv.org/abs/2406.09358v1"> "Understanding Hallucinations in Diffusion Models through Mode Interpolation"</a> , Aithal et al. <br>
+<a href="https://arxiv.org/abs/2006.10739"> "Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains"</a> , Tancik et al. <br>
+<a href="https://arxiv.org/abs/2311.16148"> "Univariate Radial Basis Function Layers: Brain-inspired Deep Neural Layers for Low-Dimensional Inputs"</a> , Jost et al. <br>

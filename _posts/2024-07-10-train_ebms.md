@@ -62,7 +62,8 @@ There are many algorithms that provide us these rules to move around, one of the
 
 This whole training process can be written in these two python functions,
 
-```python
+<pre data-language="python">
+<code>
 def langevin_dynamics(model, x, num_steps=100, step_size=0.1):
     x.requires_grad_(True)
     for _ in range(num_steps):
@@ -92,7 +93,9 @@ def train_ebm(model, data, num_epochs=500, batch_size=100, lr=1e-4):
         if (epoch + 1) % 100 == 0:
             print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}")
 
-```
+</code>
+</pre>
+
 <figure>
   <img src="../../../../assets/images/mcmc.png" alt="Description of Image" width="800" height="500"/>
   <figcaption>Datapoints and the corresponding energy function trained on these datapoints</figcaption>
@@ -119,7 +122,9 @@ $$
 In other words, it measures the expected squared difference between the score functions of p and q. By minimizing this divergence, we can train our EBM to closely match the true data distribution.
 
 If we have access to true pdf, then we can calculate the energy model directly by minimizing this divergence
-```python
+<pre data-language="python">
+<code>
+
 
 def log_true_pdf(x):
     dist1 = torch.distributions.MultivariateNormal(torch.tensor([-2., -2.]), torch.eye(2)*0.5)
@@ -152,7 +157,9 @@ def train_energy_model(model, data, epochs=1000, lr=0.00001, batch_size=128):
         if epoch % 100 == 0:
             print(f'Epoch {epoch}, Loss: {loss.item()}')
 
-```
+</code>
+</pre>
+
 
 ## Denoising Score Matching
 Well, in most of the situation we do not have access to this log_true_pdf function, in such cases, Denoising Score Matching provides an elegant solution. The core idea of DSM is to work with a noise-perturbed version of our data, which allows us to sidestep the need for knowing the true data distribution while also making the method more robust to discrete or sharp features in the data.
@@ -199,7 +206,8 @@ $$
 
 The training objective is to maximize the likelihood of correctly classifying the samples. This is achieved by minimizing the binary cross-entropy loss, which is a standard loss function for classification tasks. For data samples, the target label is 1 (data), and for noise samples, the target label is 0 (noise).  
 
-```python
+<pre data-language="python">
+<code>
 
 def nce_loss(energy_model, data, noise, noise_ratio=1):
     batch_size = data.shape[0]
@@ -246,7 +254,9 @@ def train_nce(energy_model, num_epochs=1000, batch_size=128, noise_ratio=1, lr=0
         if (epoch + 1) % 100 == 0:
             print(f"Epoch {epoch+1}/{num_epochs}, Loss: {loss.item():.4f}")
 
-```
+</code>
+</pre>
+
 
 <figure>
   <img src="../../../../assets/images/nce.png" alt="Description of Image" width="800" height="500"/>
@@ -254,4 +264,4 @@ def train_nce(energy_model, num_epochs=1000, batch_size=128, noise_ratio=1, lr=0
 </figure>
 
 ## References
- "How to Train Your Energy-Based Models", Yang Song, Diederik P. Kingma, 2021, arxiv.org/abs/2101.03288
+ <a href="https://www.arxiv.org/abs/2101.03288"> "How to Train Your Energy-Based Models"</a>, Yang Song, Diederik P. Kingma, 2021
