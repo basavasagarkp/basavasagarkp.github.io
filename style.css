@@ -737,3 +737,44 @@ a {
   margin-bottom: 0;
   line-height: 1.6;
 }
+
+/* Remove the default link underline */
+.report-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.report-item h3 {
+  font-size: 1.2em;
+  color: #150c21;
+  margin-bottom: 0.5em;
+}
+
+.report-item p {
+  color: #666666;
+  font-size: 0.95em;
+  margin-bottom: 0.2em;
+}
+
+.report-date {
+  color: #666666;
+  font-size: 0.95em;
+  font-style: italic;
+}
+/* Update hover styles */
+.report-item {
+  margin-bottom: 2em;
+  padding: 1em;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.report-item:hover {
+  background-color: #f5f5f5;
+  border-left: 3px solid #11191f;
+}
+.report-item a:hover {
+  text-decoration: none;
+  border-bottom: none;
+}
