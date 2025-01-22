@@ -46,8 +46,8 @@ While LLMs and TAMP planners are very good at discretely planning steps, however
 </div>
 
 
-## Model Size, Retreival, Uncertainty and Resolution
-I really like this analogy of connecting the scaling laws, retreival and uncertainty to the resolution of the task-space manifolds. When you have a small model or a small dataset, the manifold is kinda blurry and you have a rough (noisy) esimate of where you are in the current task and how you move from their to a configuration where you can switch between skills. But as you increase your model-size as well as the dataset size, the resolution of the manifold increases as well. Now you will have a better (less noisy) estimate of your configuration and how to move from that configuration to the boundary of a different skill.
+## Model Size, Retrieval, Uncertainty and Resolution
+I really like this analogy of connecting the scaling laws, retrieval and uncertainty to the resolution of the task-space manifolds. When you have a small model or a small dataset, the manifold is kinda blurry and you have a rough (noisy) esimate of where you are in the current task and how you move from their to a configuration where you can switch between skills. But as you increase your model-size as well as the dataset size, the resolution of the manifold increases as well. Now you will have a better (less noisy) estimate of your configuration and how to move from that configuration to the boundary of a different skill.
 
 This is analogous to traditional uncertainty estimation in machine learning. When we talk about a "blurry" manifold in the context of smaller models or limited data, this blur can be interpreted as epistemic uncertainty - our model's uncertainty due to limited knowledge. Just as traditional uncertainty estimation methods like ensemble variance or dropout sampling give us a spread of possible predictions, the blurriness of our manifold represents a distribution over possible configurations and trajectories. Higher resolution manifolds, achieved through larger models or more data, correspond to reduced epistemic uncertainty, giving us sharper estimates of where we are in the configuration space. This is analogous to how ensemble predictions tend to converge as we add more training data. However, just as aleatoric uncertainty (inherent system randomness) remains even with infinite data, certain regions of our skill manifolds might retain some inherent "blur" due to the fundamental variability in how certain skills can be executed. This is particularly evident near the boundaries where skills intersect, where multiple valid transition points might exist.
 <div class="image-container">
@@ -58,7 +58,7 @@ This is analogous to traditional uncertainty estimation in machine learning. Whe
 </div>
 
 
-Similarly, we can also visualize Retrieval-based methods, albeit if we are retreiving some trajectories from a prior large dataset based on similarity metric, then it is similar to increasing the local resolution of the manifold (or reducing the uncertainty in our mapping from state to actions). By getting similar trajectories and finetuning on these demonstrations can increase the resolution of the manifold which inturn can allow for more accurate estimate and direction to move along the manifold for completing the tasks. However, the retreival of trajectories is usually based on similarity metrics, which might result in a lot of redundant trajectories that might not be useful. This is mainly because similarity based metrics does not take into account the information gain from individual samples ([Hubotter et al., 2024](https://arxiv.org/abs/2410.08020)).
+Similarly, we can also visualize Retrieval-based methods, albeit if we are retrieving some trajectories from a prior large dataset based on similarity metric, then it is similar to increasing the local resolution of the manifold (or reducing the uncertainty in our mapping from state to actions). By getting similar trajectories and finetuning on these demonstrations can increase the resolution of the manifold which inturn can allow for more accurate estimate and direction to move along the manifold for completing the tasks. However, the retrieval of trajectories is usually based on similarity metrics, which might result in a lot of redundant trajectories that might not be useful. This is mainly because similarity based metrics does not take into account the information gain from individual samples ([Hubotter et al., 2024](https://arxiv.org/abs/2410.08020)).
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
     <figure style="width: 48%; margin: 0;">
@@ -67,7 +67,7 @@ Similarly, we can also visualize Retrieval-based methods, albeit if we are retre
     </figure>
     <figure style="width: 48%; margin: 0;">
         <img src="../../../../assets/images/manifold_retreival.png" alt="Description of second image" style="width: 100%; height: auto;"/>
-        <figcaption style="text-align: center; margin-top: 10px;">Retreival of nearest neighbour trajectories for local learning.</figcaption>
+        <figcaption style="text-align: center; margin-top: 10px;">Retrieval of nearest neighbour trajectories for local learning.</figcaption>
     </figure>
 </div>
 ## Interesting Problems
