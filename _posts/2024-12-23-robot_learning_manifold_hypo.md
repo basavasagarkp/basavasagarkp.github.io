@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Understanding Robot Learning using two blobs"
-author: "Sagar"
 date: 2024-12-27
 ---
 {%- include mathjax.html -%}

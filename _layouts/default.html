@@ -40,9 +40,9 @@
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     </style>
 
   </head>
@@ -50,13 +50,16 @@
   <body id="body">
 
     <div id="main">
+      <div id="nav-links">
+        <a href="/blogs/">Blogs</a>
+      </div>
       <div id="intro">
         <div id="intro-text">
-          <h1>Basava<i>sagar</i></h1>
           <div id="initial-bio">
             <p>
-              You most probably know me (or can refer me) by the name 'Sagar'.  I'm a Robotics Master's Student at University of Michigan, working with <a href="https://bucherb.github.io/">Prof. Bernadette Bucher</a>.
-              My research focuses on Robot Learning and fundamentals of Machine Learning.
+              Hello, my name is Basavasagar Patil. You most probably know me (or can refer me) by the name 'Sagar'. 
+              I'm a first year Computer Science PhD student at UC Irvine under <a href="https://unnat.github.io/">Prof. Unnat Jain</a>.
+              My research focus is on Robot Learning.
               <!--
               <span class="text-reveal-container">
                 <span id="clickableText" class="clickable-text">Dam after me!</span>
@@ -67,30 +70,33 @@
             <div class="bio-toggle">
               <a href="javascript:void(0)" id="bio-toggle-button" onclick="toggleBio()">Show more</a>
             </div>
-          </div>
-          
-          <div id="extended-bio" style="display: none;">
-            <p>
-              Previously, I was at <a href="https://www.inria.fr">Inria</a> with <a href="https://www.scirei.net/">Chris Reinke</a> and <a href="https://eolrobotics.fr/">Paul Aubin</a>,
-              working on Learning for Low-Dimensional Inputs and Optimization of Large Battery Systems using Reinforcement Learning, but RL is really hard in real world.
-              Before that, I completed my Bachelor's in Electronics and Communication Engineering at RVCE.
-            </p>
+            <div id="extended-bio" style="display: none;">
+              <p>
+                Previously, I obtained my MS in Robotics at University of Michigan under <a href="https://bucherb.github.io/">Prof. Bernadette Bucher</a>.
+                Before that, I was a Research Intern followed by Research Engineer at <a href="https://www.inria.fr">Inria</a>. I completed my Bachelor's in Electronics and Communication Engineering at RVCE.
+              </p>
+            </div>
             <p>
               <a href="https://github.com/bkpcoding">Github</a>&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="https://scholar.google.com/citations?user=tV-esHoAAAAJ&hl=en&oi=sra">G. Scholar</a>&nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="https://www.goodreads.com/user/show/67192598-sagar">Goodreads</a>
+              <a href="https://www.goodreads.com/user/show/67192598-sagar">Goodreads</a>&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="https://twitter.com/basavasagar18">Twitter</a>
             </p>
             <p>
-              bpatil at umich dot edu
+              bkpatil at uci dot edu
             </p>
+            
+            <div id="news-section">
+              <h3>News</h3>
+              <ul class="news-list">
+                <li><span class="news-date">July 2025:</span> New blog post on <a href="#">Robot Learning Manifolds</a></li>
+              </ul>
+            </div>
           </div>
-        </div>
-              <!--
         <div id="intro-image">
-          <img src="images/profile_photo_crop.png">
+          <img src="assets/images/me_rome_1_crop.jpg" alt="Basavasagar Patil">
         </div>
-      -->
+        </div>
       </div>
 
       <!-- Toggle highlights button 
@@ -99,185 +105,7 @@
       </div>
     -->
 
-      <div id="filters" class="button-group">
-        <!-- <button class="button" data-filter="*">Show All</button> -->
-        <button class="button is-checked" data-filter=".publication">Publications</button>
-        <button class="button" data-filter=".blogs">Blogs</button>
-         <button class="button" data-filter=".reports">Reports</button>
-        <!--
-        <button class="button" data-filter=".economics">Economics</button>
-        <button class="button" data-filter=".random">Random Thoughts</button>
-      -->
-      </div>
-
-      <div class="grid">
-
-        <!-- Publications -->
-        <div class="list-item publication description" data-category="publication">
-          Selected Publications (<a href="https://scholar.google.com/citations?user=tV-esHoAAAAJ&hl=en&oi=sra"> Google Scholar</a>):
-        </div>
-
-        <!-- Preview Videos 
-        <div class="list-item highlight previews" data-category="highlight">
-
-          <a href="https://palm-e.github.io/"><video class="preview1" playsinline="" muted="" autoplay="" loop=""><source src="images/video-palm-e.mp4" type="video/mp4"></video></a>
-
-          <a href="https://say-can.github.io/"><video class="preview2" playsinline="" muted="" autoplay="" loop=""><source src="images/video-saycan.mp4" type="video/mp4"></video></a>
-
-          <a href="https://tossingbot.cs.princeton.edu/"><video class="preview3" playsinline="" muted="" autoplay="" loop=""><source src="images/video-tossingbot-crop.mp4" type="video/mp4"></video></a>
-
-        </div>
-        -->
-
-        <!-- Truncated Set of Highlights (Shown by Default) -->
-        <div id="main-highlights">
-          <div class="list-item publication" data-category="publication">
-            <a href="https://openreview.net/forum?id=Ju7zj6tUm6">
-              <span class="title">How vulnerable is my learned policy? Adversarial attacks on modern behavioral cloning policies              </span>
-              <span class="authors">Basavasagar Patil, Akansha Kalra, Guanhong Tao, Daniel S Brown</span>
-              <span class="conference">Under Review, ICLR 2025</span>
-            </a>
-          </div>
-          <div class="list-item publication" data-category="publication">
-            <a href="">
-              <span class="title">Bladder cancer segmentation using u-net based deep-learning</span>
-              <span class="authors">Basavasagar Patil, Lubomir Hadjiiski, Di Sun, Heang-Ping Chan, Richard H. Cohan, Elaine M. Caoili, Chuan Zhou</span>
-              <span class="conference">Under Review, Nature Scientific Reports</span>
-            </a>
-          </div> 
-          <div class="list-item publication" data-category="publication">
-            <a href="http://arxiv.org/abs/2311.16148">
-              <span class="title">Univariate Radial Basis Function Layers: Brain-inspired Deep Neural Layers for Low-Dimensional Inputs</span>
-              <span class="authors">Daniel Jost*, Basavasagar Patil*, Xavier Alameda-Pineda, Chris Reinke</span>
-              <span class="conference">Symposium on Biology of Decision Making, Paris 2023</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- All Archived Highlights (Click to Show) -->
-        <!--
-          <div id="more-highlights" style="display: None">
-
-
-          </div>
-        -->
-        <!-- Toggle highlights button. 
-        <div class="list-item highlight toggle-button" data-category="highlight">
-          <a id="toggle_highlights_button" href="javascript:toggle_highlights()">Show more</a>
-        </div>
-        -->
-
-      <!-- Blog Posts-->
-      <!--
-      <div class="list-item blogs data-category="blogs">
-        <a href="{% post_url 2024-07-10-train_ebms %}">Training Methods for EBMs</a>
-      </div>
-      <div class="list-item blogs data-category="blogs">
-        <a href="{% post_url 2024-07-14-modes-in-diffusion %}"> Modes in Diffusion Models</a>
-        </div>
-      </div>
-      -->
-      <div class="list-item blogs" data-category="blogs">
-        <div class="blog-post">
-          <a href="{% post_url 2024-12-23-robot_learning_manifold_hypo %}">
-            <img src="../assets/images/two_blobs.png" alt="Understanding (some) Robot Learning with Two Blobs ">
-            <div class="blog-content">
-              <h3>Understanding (some) Robot Learning with Two Blobs</h3>
-              <p>Okay, I am going to argue or convince myself some of the interesting things about robot learning using two blobs.</p>
-              <span class="post-date"></span>
-            </div>
-          </a>
-        </div>
-
-        <div class="blog-post">
-          <a href="{% post_url  2024-12-16-research_questions%}">
-            <img src="../assets/images/gaussian_modes.jpg" alt="Research Questions ">
-            <div class="blog-content">
-              <h3>Research Questions</h3>
-              <p>December 16, 2024</p>
-              <span class="post-date"></span>
-            </div>
-          </a>
-        </div>
-
-
-        <div class="blog-post">
-          <a href="{% post_url  2024-12-17-Uncertainty_in_continual_learning%}">
-            <img src="../assets/images/gaussian_modes.jpg" alt="Role of Uncertainty in Continual Learning ">
-            <div class="blog-content">
-              <h3>Role of Uncertainty in Continual Learning</h3>
-              <p>Coming Soon ...</p>
-              <span class="post-date"></span>
-            </div>
-          </a>
-        </div>
-
-        <div class="blog-post">
-          <a href="{% post_url 2024-12-07-per_sample_gradients %}">
-            <img src="../assets/images/per_sample_linear.jpeg" alt="Per-Sample Gradients">
-            <div class="blog-content">
-              <h3>Per-Sample Gradients</h3>
-              <p>Per sample gradients are cool. They can be used for many things, such as ...</p>
-              <span class="post-date">December 7, 2024</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="blog-post">
-          <a href="{% post_url  2024-10-14-memorization_vs_generalization %}">
-            <img src="../assets/images/mem_vs_generalization.png" alt="Memorization vs Generalization">
-            <div class="blog-content">
-              <h3>Memorization vs Generalization</h3>
-              <p>Memorization and Generalization are two topics that has confused me a lot and is something that I have been thinking ...</p>
-              <span class="post-date">October 7, 2024</span>
-            </div>
-          </a>
-        </div>
-
-
-        <div class="blog-post">
-          <a href="{% post_url 2024-07-14-modes-in-diffusion %}">
-            <img src="../assets/images/gaussian_modes.jpg" alt="Modes in Diffusion Models">
-            <div class="blog-content">
-              <h3>Modes in Diffusion Models</h3>
-              <p>Diffusion models are great, they take the idea of iterative noise into a data point ...</p>
-              <span class="post-date">August 7, 2024</span>
-            </div>
-          </a>
-        </div>
-
-    
-        <div class="blog-post">
-          <a href="{% post_url 2024-07-10-train_ebms %}">
-            <img src="../assets/images/mcmc.png" alt="Training Methods for EBMs">
-            <div class="blog-content">
-              <h3>Training Methods for EBMs</h3>
-              <p>Energy based models try to learn unnormalized probabilities ...</p>
-              <span class="post-date">July 10, 2024</span>
-            </div>
-          </a>
-        </div>
-        
-      </div>
-      <div class="list-item reports" data-category="reports">
-        <div class="report-item">
-          <a href="https://drive.google.com/file/d/1FOKcm846dwx97H9mTdlpFnj_m7WzWCF3/view?usp=sharing" target="_blank">
-            <h3>Convergence Analysis of Distributed Stochastic Gradient Descent Algorithms</h3>
-            <p>With ever growing size of datasets, it is important for algorithms to perform with same or better accuracy in ...</p>
-            <span class="report-date">June 2021</span>
-          </a>
-        </div>
-        <div class="report-item">
-          <a href="https://drive.google.com/file/d/1IOA1K-a_YH16sJ9ikZT8PKWZDs6oAqkW/view?usp=sharing" target="_blank">
-            <h3>SAE Aerothon Design Report</h3>
-            <p> Unmanned Arieal Vehicles (UAV)</p>
-            <span class="report-date">May 2021</span>
-          </a>
-        </div>
-        <!-- Add more report items as needed -->
-      </div>
     </div>
-    <div id="footer">Inspired by <a href="https://jonbarron.info/">Jon's website</a>.</div>
 
     <script>
 

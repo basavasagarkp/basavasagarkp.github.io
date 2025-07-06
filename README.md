@@ -1,1 +1,36 @@
-This is the code for [Andy Zeng](https://andyzeng.github.io/)'s academic website. Notably, this uses [Isotope](https://isotope.metafizzy.co/) to create subpages, so you can get fancy with "sort by category" features if you want to. You can customize the `data-filter` and `data-category` fields, as well as Isotope parameters in the JS code at the bottom of `index.html`. Feel free to download this for your own personal use. Remember to delete the analytics tags at the top of `index.html` that you do not want on your own website. I'd appreciate a link back to my website. Inspired by [Jon's website](https://jonbarron.info/).
+## Local Development Setup
+
+### Prerequisites
+- Ruby (this project uses Ruby 2.6+)
+- Bundler gem manager
+
+### Installation Steps
+
+1. **Install Bundler** (if not already installed):
+   ```bash
+   gem install --user-install bundler -v 2.4.22
+   ```
+
+2. **Add gem bin directory to PATH**:
+   ```bash
+   export PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
+   ```
+
+3. **Install dependencies**:
+   ```bash
+   bundle install --path vendor/bundle
+   ```
+
+4. **Start the development server**:
+   ```bash
+   bundle exec jekyll serve
+   ```
+
+5. **View the website**:
+   Open your browser and go to `http://localhost:4000`
+
+### Troubleshooting
+
+- If you encounter permission errors, use `--user-install` flag with gem commands
+- If using system Ruby, the `--path vendor/bundle` flag installs gems locally to avoid permission issues
+- Press `Ctrl+C` to stop the development server
