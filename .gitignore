@@ -1,2 +1,6 @@
 _site/
+*.lock
+*.DS_Store
+.bundle/
+vendor/
 
