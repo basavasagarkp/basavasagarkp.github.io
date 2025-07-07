@@ -58,54 +58,40 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* Styles for LaTeX equations in Markdown */
-.math-display,
-.katex-display,
-p > span.math.math-display,
-.math-display {
+/* KaTeX math equation styling */
+.katex-display {
   display: block;
   text-align: center;
-  margin: 0.5em 0;  /* Reduced margin for top and bottom */
+  margin: 1.5em 0;
   overflow-x: auto;
-  font-size: 0.9em;  /* Smaller font size for equations */
-  font-style: italic;  /* Italicize the font */
-  color: #2c3e50;  /* Darker color for better visibility */
+  overflow-y: hidden;
 }
 
-
-
-/* Add space before and after equations */
-p + .math-display,
-p + .katex-display,
-p + p > span.math.math-display,
-p + div.math.math-display,
-.math-display + p,
-.katex-display + p,
-p > span.math.math-display + p,
-div.math.math-display + p {
-  margin-top: 1em;
+.katex {
+  font-size: 1.1em;
+  color: #150c21;
 }
 
-/* Ensure inline math is properly sized and italicized */
-.math-inline,
-.katex-inline,
-span.math.math-inline {
-  vertical-align: middle;
-  font-size: 0.8em;  /* Smaller font size for inline equations */
-  font-style: italic;  /* Italicize the font */
-  color: #333;  /* Optional: Adjust text color */
+/* Inline math styling */
+.katex-html {
+  color: #150c21;
 }
 
-/* Optional: Adjust the color for better contrast */
-.math-display, .katex-display, .math-inline, .katex-inline {
-  color: #2c3e50;  /* Darker color for better visibility */
+/* Display math styling */
+.katex-display .katex {
+  font-size: 1.2em;
+}
+
+/* Better integration with text */
+p .katex {
+  font-size: 1.05em;
 }
 /**************************************************/
 
 #body{
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1em;
-  line-height: 1.8em;
+  line-height: 1.6em;
   color: #150c21;
   background-color: #faf9f5;
 }
@@ -126,9 +112,9 @@ span.math.math-inline {
 }
 
 #nav-links a {
-  color: #295190 !important;
+  color: #000000 !important;
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 0.9em;
   font-weight: 500;
   padding: 0.5em 1em;
   border-radius: 6px;
@@ -136,7 +122,7 @@ span.math.math-inline {
 }
 
 #nav-links a:hover {
-  color: #1557b0 !important;
+  color: #333333 !important;
   border-bottom: none !important;
 }
 
@@ -165,10 +151,30 @@ h1 {
   font-weight: 500;
 }
 h1-post {
-  font-size: 2.4em;
-  line-height: 4em;
+  font-size: 1.6em;
+  line-height: 3.0em;
   font-weight: 500;
   color: #150c21;
+}
+
+.meta {
+  font-size: 0.8em;
+  color: #666666;
+  margin-bottom: 1.5em;
+}
+
+em {
+  font-style: italic;
+}
+
+.margin-note {
+  position: absolute;
+  right: -100px;
+  width: 150px;
+  font-size: 0.75em;
+  color: #888;
+  line-height: 1.4;
+  margin-top: -5em;
 }
 
 /**************************************************/
@@ -180,7 +186,7 @@ h1-post {
 }
 
 #intro-text {
-  width: 40em;
+  width: 38em;
   float: left;
 }
 
@@ -200,7 +206,7 @@ h1-post {
 }
 
 p {
-  margin-bottom: 1.5em; /* This adds space after each paragraph */
+  margin-bottom: 0.8em; /* This adds space after each paragraph */
 }
 
 /**************************************************/
@@ -891,19 +897,19 @@ a {
 
 /* Blog post content styling */
 .post-content {
-  font-size: 1.05em;
-  line-height: 1.8;
-  max-width: 550px;
+  font-size: 0.85em;
+  line-height: 1.9;
+  max-width: 500px;
   margin: 0;
   padding: -6em 3em;
 }
 
 .post-content h1, .post-content h2, .post-content h3 {
-  font-size: 1.2em;
+  font-size: 1.0em;
   margin-top: 2em;
   margin-bottom: 1em;
 }
 
 .post-content p {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }

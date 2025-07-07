@@ -7,8 +7,8 @@ twitter_username: basavasagar18
 github_username:  bkpcoding
 future: true
 published: true
-# include mathjax
-mathjax: true
+# include katex for math rendering
+katex: true
 
 # Build settings
 markdown: kramdown
@@ -19,6 +19,3 @@ kramdown:
   input: GFM
   auto_ids: true
   syntax_highlighter: rouge
-  math_engine: mathjax
-  math_engine_opts:
-    preview: false

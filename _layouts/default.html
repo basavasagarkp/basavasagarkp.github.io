@@ -16,12 +16,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1000">
 
-    <!-- Isotope JS -->
-    {% if site.mathjax %}
-    <script type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
-    {% endif %}  
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
@@ -58,7 +56,7 @@
           <div id="initial-bio">
             <p>
               Hello, my name is Basavasagar Patil. You most probably know me (or can refer me) by the name 'Sagar'. 
-              I'm a first year Computer Science PhD student at UC Irvine under <a href="https://unnat.github.io/">Prof. Unnat Jain</a>.
+              
               My research focus is on Robot Learning.
               <!--
               <span class="text-reveal-container">
@@ -83,22 +81,27 @@
               <a href="https://twitter.com/basavasagar18">Twitter</a>
             </p>
             <p>
-              bkpatil at uci dot edu
+              bpatil at umich dot edu
             </p>
             
             <div id="news-section">
               <h3>News</h3>
               <ul class="news-list">
-                <li><span class="news-date">July 2025:</span> New blog post on <a href="#">Robot Learning Manifolds</a></li>
+                <li><span class="news-date">July 2025:</span> New blog post on <a href="/2025/07/07/byte_level_diffusion/">Byte-level Diffusion Language Model for Palindrome</a></li>
+                <li><span class="news-date">February 2025:</span> Paper <a href="https://arxiv.org/abs/2502.03698">How vulnerable is my policy? Adversarial attacks on ...</a></li>
+                <li><span class="news-date">Nov 2024:</span> Blog post <a href="/2024/12/07/per_sample_gradients/">Per Sample Gradients</a></li>
+                <li><span class="news-date">November 2023:</span> Paper <a href="https://arxiv.org/abs/2311.16148">Univariate Radial Basis Function Layers...</a></li>
+                <li><span class="news-date">June 2021:</span> Report <a href="https://drive.google.com/file/d/1FOKcm846dwx97H9mTdlpFnj_m7WzWCF3/view?usp=sharing">Convergence Analysis of ASGD</a></li>
               </ul>
             </div>
           </div>
+        <!--
         <div id="intro-image">
           <img src="assets/images/me_rome_1_crop.jpg" alt="Basavasagar Patil">
         </div>
         </div>
       </div>
-
+      -->
       <!-- Toggle highlights button 
       <div class="list-item highlight toggle-button" data-category="highlight">
         <a id="toggle_highlights_button" href="javascript:toggle_highlights()">Show more</a>
@@ -207,6 +210,20 @@
         }
       }
 
+    </script>
+
+    <!-- Initialize KaTeX -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "\\(", right: "\\)", display: false}
+          ]
+        });
+      });
     </script>
   </body>
 </html>

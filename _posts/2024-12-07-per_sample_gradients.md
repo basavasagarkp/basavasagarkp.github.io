@@ -1,10 +1,8 @@
 ---
 layout: post
 title: "Per Sample Gradients"
-author: "Sagar"
 date: 2024-12-07
 ---
-{%- include mathjax.html -%}
 
 ## Per Sample Gradients
 
